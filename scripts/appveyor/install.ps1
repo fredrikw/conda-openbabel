@@ -58,10 +58,11 @@ function InstallMiniconda ($python_version, $architecture, $python_home) {
     Get-ChildItem -Recurse "C:\Miniconda3"
 
     # $filepath = DownloadMiniconda $python_version $platform_suffix
-    $filepath = "C:\Miniconda3" + $platform_suffix
+    $filepath = "C:\Miniconda3" + $platform_suffix + "\Scripts\conda.exe"
     Write-Host "Installing" $filepath "to" $python_home
     $install_log = $python_home + ".log"
-    $args = "/S /D=$python_home"
+    # $args = "/S /D=$python_home"
+    $args = "create --prefix $python_home python=$python_version" 
     Write-Host $filepath $args
     Start-Process -FilePath $filepath -ArgumentList $args -Wait -Passthru
     if (Test-Path $python_home) {
