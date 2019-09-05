@@ -45,17 +45,18 @@ function DownloadMiniconda ($python_version, $platform_suffix) {
 
 function InstallMiniconda ($python_version, $architecture, $python_home) {
     Write-Host "Installing Python" $python_version "for" $architecture "bit architecture to" $python_home
-    if (Test-Path $python_home) {
-        Write-Host $python_home "already exists, skipping."
-        return $false
-    }
+    # if (Test-Path $python_home) {
+    #     Write-Host $python_home "already exists, skipping."
+    #     return $false
+    # }
     if ($architecture -match "32") {
-        $platform_suffix = "x86"
+        $platform_suffix = ""
     } else {
-        $platform_suffix = "x86_64"
+        $platform_suffix = "-x64"
     }
 
-    $filepath = DownloadMiniconda $python_version $platform_suffix
+    # $filepath = DownloadMiniconda $python_version $platform_suffix
+    $filepath = "C:\Miniconda3" + $platform_suffix
     Write-Host "Installing" $filepath "to" $python_home
     $install_log = $python_home + ".log"
     $args = "/S /D=$python_home"
