@@ -55,6 +55,8 @@ function InstallMiniconda ($python_version, $architecture, $python_home) {
         $platform_suffix = "-x64"
     }
 
+    Get-ChildItem "C:\"
+
     # $filepath = DownloadMiniconda $python_version $platform_suffix
     $filepath = "C:\Miniconda3" + $platform_suffix
     Write-Host "Installing" $filepath "to" $python_home
