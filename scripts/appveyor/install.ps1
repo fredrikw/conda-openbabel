@@ -70,7 +70,9 @@ function InstallMiniconda ($python_version, $architecture, $python_home) {
         Get-Content -Path $install_log
         Exit 1
     }
-    Get-ChildItem -Recurse "$python_home"
+    $args = "activate --prefix $python_home"
+    Start-Process -FilePath $filepath -ArgumentList $args -Wait -Passthru
+    
 
 }
 
