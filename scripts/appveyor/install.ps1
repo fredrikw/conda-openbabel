@@ -75,7 +75,7 @@ function InstallCondaPackages ($python_home, $spec) {
     $conda_path = $python_home + "\Scripts\conda.exe"
     $install_log = $python_home + "_condapack.log"
     $install_err_log = $python_home + "_condapack.err.log"
-    $args = "install --yes -v " + $spec
+    $args = "install --yes " + $spec
     Write-Host $conda_path $args
     # $conda_path + $args | Out-Default
     Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $install_err_log -RedirectStandardOutput $install_log
@@ -85,10 +85,14 @@ function InstallCondaPackages ($python_home, $spec) {
 
 function UpdateConda ($python_home) {
     $conda_path = $python_home + "\Scripts\conda.exe"
+    $update_log = $python_home + "_update_conda.log"
+    $update_err_log = $python_home + "_update_conda.err.log"
     Write-Host "Updating conda..."
     $args = "update --yes conda"
     Write-Host $conda_path $args
-    Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru
+    Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $update_err_log -RedirectStandardOutput $update_log
+    Get-Content -Path $update_log
+    Get-Content -Path $update_err_log
 }
 
 
