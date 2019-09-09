@@ -93,6 +93,9 @@ function UpdateConda ($python_home) {
     Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $update_err_log -RedirectStandardOutput $update_log
     Get-Content -Path $update_log
     Get-Content -Path $update_err_log
+    Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $update_err_log -RedirectStandardOutput $update_log
+    Get-Content -Path $update_log
+    Get-Content -Path $update_err_log
 }
 
 
