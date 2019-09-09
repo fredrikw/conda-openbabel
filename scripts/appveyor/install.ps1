@@ -74,8 +74,9 @@ function InstallMiniconda ($python_version, $architecture, $python_home) {
 function InstallCondaPackages ($python_home, $spec) {
     $conda_path = $python_home + "\Scripts\conda.exe"
     $args = "install --yes " + $spec
-    Write-Host ("conda " + $args)
-    Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru
+    Write-Host $conda_path $args
+    $conda_path + $args | Out-Default
+    # Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru
 }
 
 function UpdateConda ($python_home) {
