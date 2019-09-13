@@ -88,11 +88,8 @@ function UpdateConda ($python_home) {
     $update_log = $python_home + "_update_conda.log"
     $update_err_log = $python_home + "_update_conda.err.log"
     Write-Host "Updating conda..."
-    $args = "update --yes conda"
+    $args = "update --yes -c https://repo.anaconda.com/pkgs/main/ conda"
     Write-Host $conda_path $args
-    Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $update_err_log -RedirectStandardOutput $update_log
-    Get-Content -Path $update_log
-    Get-Content -Path $update_err_log
     Start-Process -FilePath "$conda_path" -ArgumentList $args -Wait -Passthru -RedirectStandardError $update_err_log -RedirectStandardOutput $update_log
     Get-Content -Path $update_log
     Get-Content -Path $update_err_log
